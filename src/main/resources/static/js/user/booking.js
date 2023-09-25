@@ -1,19 +1,23 @@
 $(() => {
-
-    $('.tab-block a').click(function (e) {
+    $('.tab-block button').click(function (e) {
         e.preventDefault(); // 기본 링크 동작을 막기
 
-        const currentAttrValue = $(this).attr('href'); // 클릭된 탭의 href 값을 가져옴
+        const targetTab = $(this).data('target'); // 클릭된 탭의 href 값을 가져옴
+
+        $(".box-pulldown .cont").hide();
 
         // 탭 컨텐츠 표시/숨기기
-        $('.tab-cont').hide(); // 모든 탭 컨텐츠 숨기기
-        $(currentAttrValue).show(); // 클릭된 탭의 컨텐츠만 보이기
+        $('.tab-cont').removeClass('on');
+        $('.tab-block li').removeClass('on');
 
-        // 탭 버튼 활성화/비활성화
-        $('.tab-block li').removeClass('on'); // 모든 탭 버튼 비활성화
-        $(this).parent('li').addClass('on'); // 클릭된 탭 버튼만 활성화
+        // 선택한 버튼과 해당 탭의 내용을 활성화 합니다.
+        $(this).parent().addClass('on');
+        $(targetTab).addClass('on');
     });
 
+    $(".box-pulldown .btn-toggle").on('click', function () {
+        $(".box-pulldown .cont").toggle();
+    })
 
     function setDateRange(period) {
         const endDate = new Date();

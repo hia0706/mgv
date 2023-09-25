@@ -11,8 +11,12 @@
     <h2 class="tit">예매/구매 내역</h2>
     <div class="tab-block">
         <ul>
-            <li class="on"><a href="#booking-tab" class="btn booking">예매 </a></li>
-            <li class=""><a href="#pay-tab" class="btn pay">구매 </a></li>
+            <li class="on">
+                <button data-target="#booking-tab" class="btn rounded-0 booking">예매</button>
+            </li>
+            <li class="">
+                <button data-target="#pay-tab" class="btn rounded-0 pay">구매</button>
+            </li>
         </ul>
     </div>
     <div class="tab-cont-wrap">
@@ -38,7 +42,7 @@
                             <li th:id="${booking.no}" th:each="booking, i : ${bookings}">
                                 <div class="round">
                                     <a th:href="@{/movie/detail?movieNo=booking.movieNo}" class="img">
-                                        <img th:src="${booking.poster}" >
+                                        <img th:src="${booking.poster}">
                                     </a>
                                     <table class="table">
                                         <colgroup>
@@ -76,9 +80,7 @@
                                             <th scope="row" class="a-r">관람시간</th>
                                             <td th:text="${booking.startTime} +  '~' + ${booking.endTime}"></td>
                                             <th scope="row" class="a-r">결제일시</th>
-                                            <td th:text="${#dates.format(booking.createDate,'yyyy-MM-dd HH:mm:ss')}">
-                                                <a href="#" class="button gray-line x-small" title="결제정보">결제정보</a>
-                                            </td>
+                                            <td th:text="${#dates.format(booking.createDate,'yyyy-MM-dd HH:mm:ss')}"></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -102,7 +104,8 @@
                         <col style="width:160px;">
                         <col>
                         <col style="width:130px;">
-                        <col style="width:188px;">
+                        <col style="width:100px;">
+                        <col style="width:160px;">
                         <col style="width:105px;">
                     </colgroup>
                     <thead>
@@ -151,81 +154,17 @@
                     <ul class="dot-list mb30">
                         <li>만 4세(48개월) 이상부터는 영화티켓을 반드시 구매하셔야 입장 가능합니다.</li>
                         <li>예매 변경은 불가능하며, 취소 후 재 예매를 하셔야만 합니다.</li>
-                        <li>메가박스 모바일앱을 이용할 경우 티켓출력없이 모바일티켓을 통해 바로 입장하실 수 있습니다.</li>
-                    </ul>
-
-                    <strong>[티켓교환 안내]</strong>
-                    <ul class="dot-list mb30">
-                        <li>극장의 무인발권기(KIOSK)를 통해 예매번호 또는 고객확인번호(생년월일+휴대폰번호)를 입력하여 편리하게 티켓을 발권하실 수 있습니다.</li>
-                        <li>무인발권기 이용이 어려우신경우, 티켓교환권을 출력하여 매표소에 방문하시면 티켓을 발권하실 수 있습니다.</li>
-                        <li>(티켓교환권 출력이 어려운경우 예매번호와 신분증을 지참하여 매표소에 방문하시면 티켓을 발권하실 수 있습니다)</li>
                     </ul>
 
                     <strong>[예매취소 안내]</strong>
                     <ul class="dot-list">
-                        <li>온라인(홈페이지/모바일) 예매 취소는 상영시간 20분전까지 입니다.</li>
+                        <li>온라인 예매 취소는 상영시간 20분전까지 입니다.</li>
                         <li>위탁 예매 사이트 이용 시 취소 및 환불 규정은 해당 사이트 규정을 따릅니다.</li>
-                        <li>LIVE 공연 콘텐트는 취소 기준은 아래와 같습니다.
-                            <ul class="dash-list">
-                                <li>관람 4일전 : 취소 가능</li>
-                                <li>관람 3일 ~ 1일전 : 취소 수수료 부담 후 취소 가능</li>
-                                <li>관람 당일 : 취소 및 환불 불가</li>
-                            </ul>
-                        </li>
-                        <li>공연 관람시 시작 시간 이후에는 입장이 제한 됩니다.</li>
                         <li>발권된 티켓은 상영시간 전까지 현장 방문 시에만 취소가 가능합니다.</li>
                     </ul>
                 </div>
             </div>
             <!-- 예매 안내상황 End -->
-
-            <!-- 결제정보 모달 -->
-            <div id="layer_payment_history" class="modal-layer" style="z-index: 501;">
-                <div class="wrap" id="myBokdPayInfo" style="width: 600px; height: 600px; margin-left: -300px; margin-top: -300px;">
-                    <header class="layer-header">
-                        <h3 class="tit">결제상세내역</h3>
-                    </header>
-                    <div class="layer-con" style="height: 488px;">
-                        <!--// 스토어 선물 내역인 경우 -->
-                        <h4 class="tit">결제정보</h4>
-                        <div class="table-wrap">
-                            <table class="data-table">
-                                <caption>상품금액, 할인금액, 결제금액, 결제일 항목을 가진 결제정보 표</caption>
-                                <colgroup>
-                                    <col style="width:140px;">
-                                    <col>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <th scope="row" class="bg">상품금액</th>
-                                    <td>15,000원</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="bg">할인금액</th>
-                                    <td> -
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="bg">최종 결제금액</th>
-                                    <td id="myBokdPayInfo_cardNo">
-                                      <span class="font-gblue">15,000원 (토스페이(머니)) </span>/ 일시불
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="bg">결제일시</th>
-                                    <td>2023.09.05 14:29:30</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="btn-group-fixed">
-                        <button type="button" class="button close-layer">닫기</button>
-                    </div>
-                    <button type="button" class="btn-modal-close">레이어 닫기</button>
-                </div>
-            </div>
-            <!-- 결제정보 모달 end -->
         </div>
 
         <!-- 구매내역 영역 -->
@@ -322,17 +261,8 @@
                 <div class="cont">
                     <strong>[스토어 구매/취소 안내]</strong>
                     <ul class="dot-list mb30">
-                        <li>스토어 상품은 구매 후 취소가능기간 내 100% 환불이 가능하며, 부분환불은 불가 합니다.</li>
+                        <li>스토어 상품은 구매 후 7일 내 100% 환불이 가능하며, 부분환불은 불가 합니다.</li>
                         <li>(ex. 3개의 쿠폰을 한 번에 구매하신 경우, 3개 모두 취소만 가능하며 그 중 사용하신 쿠폰이 있는 경우 환불이 불가합니다)</li>
-                        <li>스토어 교환권은 MMS로 최대 1회 재전송 하실 수 있습니다.</li>
-                    </ul>
-
-                    <strong>[모바일오더 구매/취소 안내]</strong>
-                    <ul class="dot-list mb30">
-                        <li class="font-red">ⓘ 모바일오더는 모바일앱을 통해 이용하실 수 있습니다.</li>
-                        <li>모바일오더는 구매 후 즉시 조리되는 상품으로 취소가 불가 합니다.</li>
-                        <li>극장 매점에서 주문번호가 호출되면 상품을 수령하실 수 있습니다.</li>
-                        <li>극장 상황에 따라 상품준비시간이 다소 길어질 수 있습니다.</li>
                     </ul>
                 </div>
             </div>
