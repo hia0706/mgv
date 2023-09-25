@@ -1,5 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/default}">
 <head th:fragment="extra-head-content">
+    <script th:src="@{/js/booking/booking.js}"></script>
     <title>극장</title>
     <style>
         .quick-reserve-area .theater-choice .list .scroll ul li .btn.on {
@@ -21,14 +22,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.9/locale/ko.min.js"></script>
     <script src="https://js.tosspayments.com/v1"></script>
     <link
-  rel="stylesheet"
-  href="https://unpkg.com/simplebar@latest/dist/simplebar.css"
-/>
-<script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+            rel="stylesheet"
+            href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
 </head>
 <div layout:fragment="content">
-
-    <script th:src="@{/js/booking/booking.js}"></script>
     <div class="container" style="padding-bottom:240px;">
         <input type="hidden" name="playDe" value="">
         <div class="page-util" style="">
@@ -116,13 +114,15 @@
                                     <div class="all-list">
                                         <button type="button" class="btn-tab on" id="movie-all">전체</button>
                                         <div data-simplebar class="list">
-                                            <div  class="scroll m-scroll mCustomScrollbar_mCS_1 " id="movieList">
-                                                <div  id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
-                                                    <div  id="mCSB_1_container123" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
+                                            <div class="scroll m-scroll mCustomScrollbar_mCS_1 " id="movieList">
+                                                <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                                    <div id="mCSB_1_container123" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
                                                         <ul>
                                                             <li th:each="movie, i : ${movies}">
-                                                                <button th:type="button"th:id="|mBtn-${movie.no}|" th:contentRatingKr = "${movie.contentRatingKr}" th:contentRating="${movie.contentRating}" class="btn btn-movie" th:movie-nm="${movie.title}" th:movie-no="${movie.no}" th:img-path="${movie.getMainPoster()}" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-                                                                <span th:class="|movie-grade small age-${movie.contentRating}|" th:text="${movie.contentRating}" ></span>
+                                                                <button th:type="button" th:id="|mBtn-${movie.no}|" th:contentRatingKr="${movie.contentRatingKr}"
+                                                                        th:contentRating="${movie.contentRating}" class="btn btn-movie" th:movie-nm="${movie.title}" th:movie-no="${movie.no}"
+                                                                        th:img-path="${movie.getMainPoster()}" movie-popup-at="N" movie-popup-no="0" form-at="Y">
+                                                                    <span th:class="|movie-grade small age-${movie.contentRating}|" th:text="${movie.contentRating}"></span>
                                                                     <i th:if="${!movie.liked}" class="iconset ico-heart-small">보고싶어 설정안함</i>
                                                                     <i th:if="${movie.liked}" class="iconset ico-heart-on-small">보고싶어 설정</i>
                                                                     <span class="txt" th:text="${movie.title}"></span>
@@ -130,168 +130,10 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                   
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!--// all : 전체 -->
-                                    <!-- other-list  : 큐레이션 -->
-                                    <!--<div class="other-list">
-                                        <button type="button" class="btn-tab" id="movie-fav">선호영화</button>
-                                        <div class="list">
-                                            <div class="scroll m-scroll mCustomScrollbar _mCS_2 mCS_no_scrollbar" id="crtnMovieList">
-                                                <div id="mCSB_2" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
-                                                    <div id="mCSB_2_container" class="mCSB_container mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
-                                                        <ul>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="비닐하우스" movie-no="23046500" img-path="/SharedImg/2023/07/05/BljCl2jSqfnwh3XhOOToC1lR1IwSMJMq_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-                                                                    <span class="movie-grade small age-15">15세이상관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">비닐하우스</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="[2023 잘츠부르크 페스티벌] 틸레만 &amp; 빈 필하모닉" movie-no="23050500" img-path="/SharedImg/2023/07/13/O1XSm4tE0CAsVHmiC4iMh7hR8lM2ONMi_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="N">
-                                                                    <span class="movie-grade small age-all">전체관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">[2023 잘츠부르크 페스티벌] 틸레만 &amp; 빈 필하모닉</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="엔니오: 더 마에스트로" movie-no="23041700" img-path="/SharedImg/2023/06/14/Ta2GwMSvrjk8ovXbAfPSqzhf6wvVN8W9_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-                                                                    <span class="movie-grade small age-12">12세이상관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">엔니오: 더 마에스트로</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="[내 생애 첫 미술관] 오르세 미술관" movie-no="23048300" img-path="/SharedImg/2023/06/27/UfBwVtcJT7zfKuccg7cAOTP99EpemOKG_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="N">
-                                                                    <span class="movie-grade small age-all">전체관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">[내 생애 첫 미술관] 오르세 미술관</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="[2023 오데온스 광장 콘서트] 랑랑 &amp; 에스트라다" movie-no="23050600" img-path="/SharedImg/2023/07/13/XBY0G68OA3FjqYfW788cN2FdAh0bSFMo_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="N">
-                                                                    <span class="movie-grade small age-all">전체관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">[2023 오데온스 광장 콘서트] 랑랑 &amp; 에스트라다</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="[내 생애 첫 미술관] 루브르 박물관" movie-no="23048200" img-path="/SharedImg/2023/06/27/smVA8mnr3yrYVLNaTCbHbBW8Eo1LKwWY_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="N">
-                                                                    <span class="movie-grade small age-all">전체관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">[내 생애 첫 미술관] 루브르 박물관</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="[시네도슨트 in 대전] 메트로폴리탄 미술관" movie-no="23051100" img-path="/SharedImg/2023/07/12/pdZgjN8OtpiymqohJ8BHY4RjedfEygQG_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="N">
-                                                                    <span class="movie-grade small age-12">12세이상관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">[시네도슨트 in 대전] 메트로폴리탄 미술관</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="[2023 잘츠부르크 페스티벌] 맥베스" movie-no="23050700" img-path="/SharedImg/2023/07/11/sxezM2V8If4OxrLzw667bmkQrBNaWxUm_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="N">
-                                                                    <span class="movie-grade small age-12">12세이상관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">[2023 잘츠부르크 페스티벌] 맥베스</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="[로열 오페라] 일 트로바토레" movie-no="23050400" img-path="/SharedImg/2023/07/11/b0sgCmkZOKXCWswySZkx8nWKa3YlraJu_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="N">
-                                                                    <span class="movie-grade small age-all">전체관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">[로열 오페라] 일 트로바토레</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="[내 생애 첫 미술관] 내셔널 갤러리" movie-no="23048400" img-path="/SharedImg/2023/06/27/lY9YMBaT3SfaqLm7wlK9hGf1OJ7kfSWf_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="N">
-                                                                    <span class="movie-grade small age-all">전체관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">[내 생애 첫 미술관] 내셔널 갤러리</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="비밀의 언덕" movie-no="23043300" img-path="/SharedImg/2023/06/30/PYpT3kgezNYiJufJaVPCCgR8ty058F0U_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-                                                                    <span class="movie-grade small age-all">전체관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">비밀의 언덕</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="에고이스트" movie-no="23046300" img-path="/SharedImg/2023/07/20/k9CR0Aic7ue2mZ2bWTZqZ3ffWq6WU4gX_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-                                                                    <span class="movie-grade small age-19">청소년관람불가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">에고이스트</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="더 썬" movie-no="23044000" img-path="/SharedImg/2023/07/19/zIdCDyR15XbdYjcXiziLjNpdMFM8mk8C_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="N">
-                                                                    <span class="movie-grade small age-15">15세이상관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">더 썬</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="슬기로운 아내 수업" movie-no="23034600" img-path="/SharedImg/2023/06/17/U1Nk6H6QRB2KZ93mWwHaZI9xLmrVkAaN_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-                                                                    <span class="movie-grade small age-12">12세이상관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">슬기로운 아내 수업</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="보통의 카스미" movie-no="23043000" img-path="/SharedImg/2023/06/14/rP0h50nH8AvyCRrktGNKP3ZKfF9Od3FV_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-                                                                    <span class="movie-grade small age-12">12세이상관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">보통의 카스미</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="붉은 사막" movie-no="23053600" img-path="/SharedImg/2023/07/18/ZfFVGHvuHszIyI9Z232A2TcMtzLQFhoq_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-                                                                    <span class="movie-grade small age-15">15세이상관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">붉은 사막</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="러브 라이프" movie-no="23044400" img-path="/SharedImg/2023/06/20/mhliAiLZb2RgPMTnBRn5d9kKHOkNualY_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="Y">
-                                                                    <span class="movie-grade small age-12">12세이상관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">러브 라이프</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="[내 생애 첫 미술관] 뉴욕 현대미술관" movie-no="23048500" img-path="/SharedImg/2023/06/27/8Bar6t5Y1rPa6qoY081byx8pCEOdTvTE_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="N">
-                                                                    <span class="movie-grade small age-all">전체관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">[내 생애 첫 미술관] 뉴욕 현대미술관</span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button type="button" class="btn" movie-nm="[아웃도어미션게임 극장판] 그놈을 잡아라!" movie-no="23042700" img-path="/SharedImg/2023/06/07/QmhvnGYpcpQejNvbPfsy7GHhdXcGuCwB_150.jpg" movie-popup-at="N" movie-popup-no="0" form-at="N">
-                                                                    <span class="movie-grade small age-15">15세이상관람가</span>
-                                                                    <i class="iconset ico-heart-small">보고싶어 설정안함</i>
-                                                                    <span class="txt">[아웃도어미션게임 극장판] 그놈을 잡아라!</span>
-                                                                </button>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-light mCSB_scrollTools_vertical">
-                                                        <div class="mCSB_draggerContainer">
-                                                            <div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: none; top: 0px;">
-                                                                <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
-                                                            </div>
-                                                            <div class="mCSB_draggerRail"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>-->
-                                    <!--// other-list  : 큐레이션 -->
                                 </div>
                                 <!--// list-area -->
                                 <!-- view-area -->
@@ -335,14 +177,17 @@
                                                                     <div id="mCSB_4_container" class="mCSB_container mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
                                                                         <ul>
                                                                             <li th:class="theater-list" th:each="theater, j : ${location.theaters}">
-                                                                                <button type="button"  th:id="|tBtn-${theater.name}|" class="btn-theater" th:theater-no="${theater.no}" th:theater-name="${theater.name}" th:location-name="${location.name}" form-at="Y" area-cd="10" area-cd-nm="서울" spclb-yn="N" brch-bokd-unable-at="N" brch-popup-at="N" brch-popup-no="0" th:text="${theater.name}"></button>
+                                                                                <button type="button" th:id="|tBtn-${theater.name}|" class="btn-theater" th:theater-no="${theater.no}"
+                                                                                        th:theater-name="${theater.name}" th:location-name="${location.name}" form-at="Y" area-cd="10" area-cd-nm="서울"
+                                                                                        spclb-yn="N" brch-bokd-unable-at="N" brch-popup-at="N" brch-popup-no="0" th:text="${theater.name}"></button>
                                                                             </li>
 
                                                                         </ul>
                                                                     </div>
                                                                     <div id="mCSB_4_scrollbar_vertical" class="mCSB_scrollTools mCSB_4_scrollbar mCS-light mCSB_scrollTools_vertical">
                                                                         <div class="mCSB_draggerContainer">
-                                                                            <div id="mCSB_4_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: none; top: 0px;">
+                                                                            <div id="mCSB_4_dragger_vertical" class="mCSB_dragger"
+                                                                                 style="position: absolute; min-height: 30px; display: none; top: 0px;">
                                                                                 <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
                                                                             </div>
                                                                             <div class="mCSB_draggerRail"></div>
@@ -356,7 +201,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                                 <!--// list-area -->
                                 <!-- view-area -->
@@ -380,7 +224,6 @@
                             <div class="time-choice">
                                 <div class="tit-area">
                                     <p class="tit">상영 스케쥴</p>
-
                                 </div>
                                 <!-- hour-schedule : 시간 선택  : 00~30 시-->
 
@@ -433,7 +276,8 @@
                                 <h3 class="tit small"> 관람인원선택</h3>
                                 <div class="right">
                                     <button type="button" class="button gray-line small" id="clearChoice">
-                                        <i class="iconset ico-reset-small"></i>초기화 </button>
+                                        <i class="iconset ico-reset-small"></i>초기화
+                                    </button>
                                 </div>
                             </div>
                             <div class="seat-area">
@@ -446,7 +290,7 @@
                                                 <button type="button" id="adult-tickets" class="now" title="성인 현재 좌석 선택 수" ticketgrpcd="TKA">0</button>
                                                 <ul class="num-choice">
                                                     <li>
-                                                        <button  type="button" class="btn on">0</button>
+                                                        <button type="button" class="btn on">0</button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -475,22 +319,20 @@
                                     <div class="scroll m-scroll mCustomScrollbar _mCS_1 mCS_no_scrollbar">
                                         <div id="mCSB_1222" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
                                             <div id="mCSB_1_container222" class="mCSB_container mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px;" dir="ltr">
-
                                                 <div id="seatLayout" style="width: 100%; height: 210px;">
-                                                    <div style="text-align:center" >
+                                                    <div style="text-align:center">
                                                         <img src="https://www.megabox.co.kr/static/pc/images/reserve/img-theater-screen.png" alt="screen" class="mCS_img_loaded">
                                                     </div>
                                                     <div style="height:20px;"></div>
-                                                    <div class="row justify-content-center" id="seatsDiv" >
-
-                                                    </div>
+                                                    <div class="row justify-content-center" id="seatsDiv"></div>
                                                 </div>
                                                 <img src="https://www.megabox.co.kr/static/pc/images/reserve/img-door-left-right.png" alt="좌우측 출입구" style="position:absolute; left:231px; top:30px; width:16px; height: 16px;" class="mCS_img_loaded">
                                             </div>
                                         </div>
                                         <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical">
                                             <div class="mCSB_draggerContainer">
-                                                <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: none; height: 732px; top: 0px; max-height: 382px;">
+                                                <div id="mCSB_1_dragger_vertical" class="mCSB_dragger"
+                                                     style="position: absolute; min-height: 30px; display: none; height: 732px; top: 0px; max-height: 382px;">
                                                     <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
                                                 </div>
                                                 <div class="mCSB_draggerRail"></div>
@@ -500,80 +342,6 @@
                                 </div>
                             </div>
                             <div class="zone-legend" style="display: none"></div>
-                        </div>
-                        <div class="seat-result" id="step1-result">
-                            <div class="wrap">
-                                <div class="tit-area">
-                                    <span class="movie-grade small">12세이상관람가</span>
-                                    <p class="tit">(더빙) 명탐정코난: 흑철의 어영</p>
-                                    <p class="cate">2D</p>
-                                </div>
-                                <div class="info-area">
-                                    <p class="theater">강남</p>
-                                    <p class="special">5관</p>
-                                    <p class="date">
-                                        <span>2023.07.31</span>
-                                        <em>(월)</em>
-                                    </p>
-                                    <p type="button" class="now">08:55~10:54
-                                    </p>
-                                    <p class="poster">
-                                    </p>
-                                </div>
-                                <div class="choice-seat-area">
-                                    <div class="legend">
-                                        <ul class="list">
-                                            <li>
-                                                <div class="seat-condition choice" title="선택한 좌석"></div>
-                                                <em>선택</em>
-                                            </li>
-                                            <li>
-                                                <div class="seat-condition finish" title="예매 완료"></div>
-                                                <em>예매완료</em>
-                                            </li>
-                                            <li>
-                                                <div class="seat-condition impossible" title="선택 불가"></div>
-                                                <em>선택불가</em>
-                                            </li>
-                                            <li>
-                                                <div class="seat-condition common" title="일반"></div>
-                                                <em>선택가능</em>
-                                            </li>
-     <!--                                       <li>
-                                                <div class="seat-condition disabled" title="장애인석"></div>
-                                                <em> 장애인석</em>
-                                            </li>-->
-                                        </ul>
-                                    </div>
-                                    <div class="seat-num">
-                                        <p class="tit">선택좌석</p>
-                                        <div class="my-seat">
-                                            <div class="seat all" title="구매가능 좌석">-</div>
-                                            <div class="seat all" title="구매가능 좌석">-</div>
-                                            <div class="seat all" title="구매가능 좌석">-</div>
-                                            <div class="seat all" title="구매가능 좌석">-</div>
-                                            <div class="seat all" title="구매가능 좌석">-</div>
-                                            <div class="seat all" title="구매가능 좌석">-</div>
-                                            <div class="seat all" title="구매가능 좌석">-</div>
-                                            <div class="seat all" title="구매가능 좌석">-</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pay-area">
-                                    <p class="count"></p>
-                                    <div class="pay">
-                                        <p class="tit">최종결제금액</p>
-                                        <div class="money">
-                                            <em id="tickets-total-price">0</em>
-                                            <span>원</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="button" id="pagePrevious" title="이전">이전</button>
-                                    <button  class="button disabled" id="pageNext" title="다음">다음</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -612,21 +380,20 @@
                                 <h3 class="tit small">결제수단선택
                                     <!-- 결제수단선택 -->
                                 </h3>
-                              <!--  <div class="right">
-                                    <input type="checkbox" id="same_use_payment">
-                                    <label for="same_use_payment" id="label_use_payment">다음에도 이 결제수단 사용
-                                        &lt;!&ndash; 다음에도 이 결제수단 사용 &ndash;&gt;
-                                    </label>
-                                </div>-->
+                                <!--  <div class="right">
+                                      <input type="checkbox" id="same_use_payment">
+                                      <label for="same_use_payment" id="label_use_payment">다음에도 이 결제수단 사용
+                                          &lt;!&ndash; 다음에도 이 결제수단 사용 &ndash;&gt;
+                                      </label>
+                                  </div>-->
                             </div>
                             <div class="select-payment ty2">
                                 <div class="radio-group">
-                    <span class="bg-chk small">
-                      <input type="radio" name="radio_payment" id="tosspay" value="tosspay" checked>
-                      <label for="tosspay">토스페이</label>
-                    </span>
+                                    <span class="bg-chk small">
+                                      <input type="radio" name="radio_payment" id="tosspay" value="tosspay" checked> <label for="tosspay">토스페이</label>
+                                    </span>
                                 </div>
-                                <div id="pay-info-tosspay"class="select-toss-info" style="display:block">
+                                <div id="pay-info-tosspay" class="select-toss-info" style="display:block">
                                     <ul class="dash-list">
                                         <li>토스에 등록된 계좌와 신용/체크카드로 쉽고 편리하게 결제하세요.</li>
                                         <li>토스페이 결제 시 토스에서 제공하는 카드사 별 무이자, 청구할인, 결제 이벤트만 제공됩니다.</li>
@@ -640,10 +407,10 @@
                             </div>
                             <dl class="term-list" id="terms" style="display: none;">
                                 <dt>
-                    <span class="bg-chk small">
-                      <input type="checkbox" id="agree">
-                      <label for="agree">결제대행 서비스 약관 필수 동의</label>
-                    </span>
+                                    <span class="bg-chk small">
+                                        <input type="checkbox" id="agree">
+                                        <label for="agree">결제대행 서비스 약관 필수 동의</label>
+                                    </span>
                                 </dt>
                                 <dd class="tit"> 전자금융거래 이용약관
                                     <!-- 전자금융거래 이용약관 -->
@@ -672,99 +439,73 @@
                                         <span id="playDe">2023.07.30</span>
                                         <em id="dowNm">(일)</em>
                                         <span class="time" id="playTime">
-                        <i class="iconset ico-clock-white"></i>09:05~11:24 </span>
+                                        <i class="iconset ico-clock-white"></i>09:05~11:24 </span>
                                     </p>
                                 </div>
                                 <div class="price-process">
                                     <div class="box">
                                         <div class="data">
-                        <span class="tit">성인 <em>1</em>
-                        </span>
+                                            <span class="tit">성인 <em>1</em></span>
                                             <span class="price">11,000</span>
                                         </div>
-                                        <!--
-                                            <div class="data"><span class="tit">일반 <em>1</em></span><span class="price">20,000</span></div><div class="data"><span class="tit">어린이 <em>2</em></span><span class="price">6,000</span></div>
-                                            -->
                                         <div class="all">
-                        <span class="tit">금액
-                            <!-- 금액 -->
-                        </span>
-                                            <span class="price">
-                          <em>11,000</em>
-                          <span>원
-                              <!-- 원 -->
-                          </span>
-                        </span>
+                                            <span class="tit">금액</span>
+                                            <span class="price"><em>11,000</em><span>원</span></span>
                                         </div>
                                     </div>
                                     <div class="box discout-box">
                                         <div class="all">
-                        <span class="tit">관람권 적용
-                        </span>
-                                            <span class="price">
-                          <em>0</em> 원
-                                                <!-- 원 -->
-                        </span>
+                                            <span class="tit">관람권 적용</span>
+                                            <span class="price"><em>0</em> 원</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="pay-area">
                                     <div class="add-thing">
-                                        <p class="tit">추가차액
-                                            <!-- 추가금액 -->
-                                        </p>
+                                        <p class="tit">추가차액</p>
                                         <div class="money">0</div>
                                     </div>
                                     <div class="pay">
-                                        <p class="tit">최종결제금액
-                                            <!-- 최종결제금액 -->
-                                        </p>
+                                        <p class="tit">최종결제금액</p>
                                         <div class="money">
-                                            <em id="final-price">11,000</em>
-                                            <span>원
-                                                <!-- 원 -->
-                        </span>
+                                            <em id="final-price">11,000</em><span>원</span>
                                         </div>
                                     </div>
                                     <div class="payment-thing">
-                      <span class="tit">결제수단
-                          <!-- 결제수단 -->
-                      </span>
+                                        <span class="tit">결제수단</span>
                                         <span class="thing">토스페이</span>
                                     </div>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="button" id="prevbtnfrom2to1" title="이전">이전
-                                        <!-- 이전 -->
-                                    </button>
-                                    <button  class="button active btn-modal-open target" id="btn-final-pay" title="결제">결제</button>
+                                    <button class="button" id="prevbtnfrom2to1" title="이전">이전</button>
+                                    <button class="button active btn-modal-open target" id="btn-final-pay" title="결제">결제</button>
                                 </div>
                             </div>
                         </div>
                         <!--// seat-result -->
                     </div>
 
-
                 </div>
-                <div id="alertStyle" class="alertStyle" style="display:none; position: fixed; top: 0px; left: 0px; background: rgb(0, 0, 0); opacity: 0.7; width: 100%; height: 100%; z-index: 5005;"></div>
-                <section id="alert"class="alert-popup" style="display:none;position: fixed; padding-top: 45px; background: rgb(255, 255, 255); z-index: 5006; top: 288.5px; left: 482.5px; width: 400px; opacity: 1;"></section>
-                <div id="background-layer" class="alertStyle" style="display:none; position: fixed; top: 0px; left: 0px; background: rgb(0, 0, 0); opacity: 0.7; width: 100%; height: 100%; z-index: 505;"></div>
+                <div id="alertStyle" class="alertStyle"
+                     style="display:none; position: fixed; top: 0px; left: 0px; background: rgb(0, 0, 0); opacity: 0.7; width: 100%; height: 100%; z-index: 5005;"></div>
+                <section id="alert" class="alert-popup"
+                         style="display:none;position: fixed; padding-top: 45px; background: rgb(255, 255, 255); z-index: 5006; top: 288.5px; left: 482.5px; width: 400px; opacity: 1;"></section>
+                <div id="background-layer" class="alertStyle"
+                     style="display:none; position: fixed; top: 0px; left: 0px; background: rgb(0, 0, 0); opacity: 0.7; width: 100%; height: 100%; z-index: 505;"></div>
                 <section id="gift-ticket-layer" class="modal-layer" style="z-index: 506;"><a href="" class="focus">레이어로 포커스 이동 됨</a>
                     <div class="wrap" style="width: 600px; height: 600px; margin-left: -300px; margin-top: 0px; top: 80px;">
                         <header class="layer-header">
-                            <h3 class="tit">메가박스 관람권<!-- 메가박스 관람권 --></h3>
+                            <h3 class="tit">메가박스 관람권</h3>
                         </header>
 
                         <div class="layer-con" style="height: 488px;">
                             <div class="reset mb10">
                                 보유하신 관람권은 등록 후 사용하실 수 있습니다.<br>사용할 관람권을 등록 또는 선택해주세요.
-                                <!-- 보유하신 관람권은 등록 후 사용하실 수 있으며 등록된 관람권은<br />
-                                온라인에서만 사용 가능합니다. 사용할 관람권 또는 쿠폰을 선택해주세요. -->
                             </div>
 
                             <div class="popup-gray mid-info-box">
                                 <div class="pop-search-area">
-                                    <p class="sh-txt reset mr08"><span class="label">관람권번호<!-- 관람권번호 --></span></p>
+                                    <p class="sh-txt reset mr08"><span class="label">관람권번호</span></p>
 
                                     <div class="sh-input">
                                         <input type="text" placeholder="관람권번호 16자리 입력" title="메가박스 관람권 번호 입력" class="input-text w270px" id="gift-ticket-input" maxlength="16">
@@ -778,27 +519,23 @@
 
                             <div class="table-wrap divide">
                                 <table class="board-list line">
-                                    <caption>관람권, 유효기간, 사용여부 항목을 가진 영화관람권 목록의 제목 표<!-- 관람권, 유효기간, 사용여부 항목을 가진 영화관람권 목록의 제목 표 --></caption>
+                                    <caption>관람권, 유효기간, 사용여부 항목을 가진 영화관람권 목록의 제목 표</caption>
                                     <colgroup>
                                         <col>
                                         <col style="width:200px;">
                                         <col style="width:56px;">
                                     </colgroup>
                                     <thead id="gift-ticket-table" style="text-align: center;">
-                                    <tr >
+                                    <tr>
                                         <th scope="col">관람권</th>
                                         <th scope="col">유효기간</th>
                                         <th scope="col">사용</th>
                                     </tr>
                                     </thead>
                                 </table>
-
-                                <!--
-                                    상황에 따라 스크롤 높이값이 달라지기 때문에 인라인으로 넣어줘야 함
-                                 -->
                                 <div class="scroll" style="min-height:129px; max-height:129px;">
                                     <table class="board-list line">
-                                        <caption>관람권, 유효기간, 사용여부 항목을 가진 영화관람권 목록의 내용 표<!-- 관람권, 유효기간, 사용여부 항목을 가진 영화관람권 목록의 내용 표 --></caption>
+                                        <caption>관람권, 유효기간, 사용여부 항목을 가진 영화관람권 목록의 내용 표</caption>
                                         <colgroup>
                                             <col>
                                             <col style="width:200px;">
@@ -813,24 +550,25 @@
                             <div class="box-border v1 use-guide mt15">
                                 <p class="tit">이용안내<!-- 이용안내 --></p>
                                 <ul class="dot-list">
-                                    <li>온라인에 등록된 관람권은 극장 매표소에서는 사용이 불가합니다.<!-- 등록된 관람권은 나의메가박스에서 확인 및 삭제하실 수 있습니다. --></li>
-                                    <li>등록된 관람권은 내 정보 메뉴에서 확인하실 수 있습니다.<!-- 등록된 관람권은 나의메가박스에서 확인 및 삭제하실 수 있습니다. --></li>
+                                    <li>온라인에 등록된 관람권은 극장 매표소에서는 사용이 불가합니다.</li>
+                                    <li>등록된 관람권은 내 정보 메뉴에서 확인하실 수 있습니다.</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="btn-group-fixed">
-                            <button type="button" class="button small close-layer" id="btn-gift-close">닫기<!-- 닫기 --></button>
-                            <button type="button" class="button small purple" id="btn-gift-cancle" >적용취소<!-- 적용취소 --></button>
-                            <button type="button" class="button small purple" id="btn-gift-confirm">적용<!-- 적용 --></button>
+                            <button type="button" class="button small close-layer" id="btn-gift-close">닫기</button>
+                            <button type="button" class="button small purple" id="btn-gift-cancle">적용취소</button>
+                            <button type="button" class="button small purple" id="btn-gift-confirm">적용</button>
                         </div>
-
-                        <button type="button" class="btn-modal-close" id="btn_gift_close_x">레이어 닫기<!-- 레이어 닫기 --></button>
+                        <button type="button" class="btn-modal-close" id="btn_gift_close_x">레이어 닫기</button>
                     </div>
                 </section>
 
                 <th:block th:if="${'login' == fail}">
-                    <div id="login-fail-alert-style" class="alertStyle" style="display:block; position: fixed; top: 0px; left: 0px; background: rgb(0, 0, 0); opacity: 0.7; width: 100%; height: 100%; z-index: 5005;"></div>
-                    <section id="login-fail-alert" class="alert-popup" style="display:block;position: fixed; padding-top: 45px; background: rgb(255, 255, 255); z-index: 5006; top: 288.5px; left: 482.5px; width: 400px; opacity: 1;">
+                    <div id="login-fail-alert-style" class="alertStyle"
+                         style="display:block; position: fixed; top: 0px; left: 0px; background: rgb(0, 0, 0); opacity: 0.7; width: 100%; height: 100%; z-index: 5005;"></div>
+                    <section id="login-fail-alert" class="alert-popup"
+                             style="display:block;position: fixed; padding-top: 45px; background: rgb(255, 255, 255); z-index: 5006; top: 288.5px; left: 482.5px; width: 400px; opacity: 1;">
                         <div class="wrap">
                             <header class="layer-header"><h3 class="tit">알림</h3></header>
                             <div class="layer-con" style="height:250px"><p class="txt-common">로그인 세션이 만료되었습니다.</p>
@@ -841,15 +579,9 @@
                             <button type="button" class="btn-layer-close">레이어 닫기</button>
                         </div>
                     </section>
-
                 </th:block>
-
-
             </div>
-
         </div>
-
     </div>
-</div>
 </div>
 </html>
