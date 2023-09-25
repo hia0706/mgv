@@ -94,6 +94,16 @@ $(() => {
         });
     }
 
+    $("#google-login").click(() => {
+        Swal.fire({
+            icon: 'warning',
+            text: "서비스 준비 중 입니다.",
+            didClose: () => {
+                $username.focus();
+            }
+        })
+    })
+
     $(".btn-kakao-login").click(() => {
         location.href = `https://kauth.kakao.com/oauth/authorize?client_id=926865cb22da364155170d20476bc058&redirect_uri=http://localhost/user/auth/kakao&response_type=code`
     });
