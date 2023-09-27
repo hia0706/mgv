@@ -5,7 +5,7 @@ $(() => {
     })
 
     const $profileImg = $("#profileImage");
-    if ($profileImg.attr("src") !== "/images/user/profile/default.png") {
+    if ($profileImg.attr("src") !== "/images/user/default.png") {
         $("#btnAddProfileImg").hide();
         $("#btnDefaultProfileImg").show();
     } else {
@@ -43,7 +43,7 @@ $(() => {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         console.log("filename -> ", newImgPath)
-                        $("#profileImage").attr("src", "/images/user/profile/" + newImgPath);
+                        $("#profileImage").attr("src", "/images/user/" + newImgPath);
 
                         location.reload();
                     }
