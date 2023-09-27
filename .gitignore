@@ -4,9 +4,6 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-/src/main/resources/static/images/event/*.png
-/src/main/resources/static/images/event/*.jpg
-
 ### STS ###
 .apt_generated
 .classpath
@@ -21,9 +18,7 @@ target/
 *.iws
 *.iml
 *.ipr
-/src/main/resources/static/images/user/profile/*.png
-/src/main/resources/static/images/user/profile/*.jpg
-!/src/main/resources/static/images/user/profile/default.png
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -38,4 +33,5 @@ build/
 
 *.md
 /images/*
+!/images/user/default.png
 !/images/no-image.jpg
