@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/default}">
 <head th:fragment="extra-head-content">
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script th:src="@{/js/event/list.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/event/list.js}"></script>
     <title>이벤트</title>
 </head>
 <div layout:fragment="content">
@@ -14,37 +14,38 @@
         </div>
     </div>
     <div id="contents">
-    <div class="inner-wrap">
-    	<h2 class="tit">이벤트</h2>
-	    <div class="tab-list fixed">
-	        <ul>
-	            <li data-cat-no="1" th:classappend="${param.catNo == null || #strings.equals(param.catNo, '1') ? 'on' : ''}">
-	                <a th:href="@{/event}" title="전체">전체</a>
-	            </li>
-	            <li data-cat-no="2" th:classappend="${#strings.equals(param.catNo, '2') ? 'on' : ''}">
-	                <a th:href="@{/event/list(catNo=2)}" title="MGV Pick 탭으로 이동">MGV Pick</a>
-	            </li>
-	            <li data-cat-no="3" th:classappend="${#strings.equals(param.catNo, '3') ? 'on' : ''}">
-	                <a th:href="@{/event/list(catNo=3)}" title="영화 탭으로 이동">영화</a>
-	            </li>
-	            <li data-cat-no="4" th:classappend="${#strings.equals(param.catNo, '4') ? 'on' : ''}">
-	                <a th:href="@{/event/list(catNo=4)}" title="극장 탭으로 이동">극장</a>
-	            </li>
-	        </ul>
-	    </div>
-	 </div>
-	 
-     <div id="boardSearch" class="inner-wrap" style="">
-     <div class="board-list-util mt40">
-     <p class="result-count"><strong>전체 <span class="font-gblue" id="totalCnt" th:text="${result.pagination.totalRows}"></span>건</strong></p>
-		<form method="get" id="actionForm" th:action="@{list}">
-                <div class="board-search">
-                	<input type="hidden" name="catNo" th:value="${param.catNo == null ? 1 : param.catNo}" />
-                    <input type="search" name="keyword" th:value="${param.keyword == null ? '' : param.keyword}" title="검색어를 입력해 주세요." placeholder="검색어를 입력해 주세요." class="input-text" autocomplete="off">
-                    <button type="button" class="btn-search-input">검색</button>
-                </div>
-        </form>
+        <div class="inner-wrap">
+            <h2 class="tit">이벤트</h2>
+            <div class="tab-list fixed">
+                <ul>
+                    <li data-cat-no="1" th:classappend="${param.catNo == null || #strings.equals(param.catNo, '1') ? 'on' : ''}">
+                        <a th:href="@{/event}" title="전체">전체</a>
+                    </li>
+                    <li data-cat-no="2" th:classappend="${#strings.equals(param.catNo, '2') ? 'on' : ''}">
+                        <a th:href="@{/event/list(catNo=2)}" title="MGV Pick 탭으로 이동">MGV Pick</a>
+                    </li>
+                    <li data-cat-no="3" th:classappend="${#strings.equals(param.catNo, '3') ? 'on' : ''}">
+                        <a th:href="@{/event/list(catNo=3)}" title="영화 탭으로 이동">영화</a>
+                    </li>
+                    <li data-cat-no="4" th:classappend="${#strings.equals(param.catNo, '4') ? 'on' : ''}">
+                        <a th:href="@{/event/list(catNo=4)}" title="극장 탭으로 이동">극장</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+
+        <div id="boardSearch" class="inner-wrap" style="">
+            <div class="board-list-util mt40">
+                <p class="result-count"><strong>전체 <span class="font-gblue" id="totalCnt" th:text="${result.pagination.totalRows}"></span>건</strong></p>
+                <form method="get" id="actionForm" th:action="@{list}">
+                    <div class="board-search">
+                        <input type="hidden" name="catNo" th:value="${param.catNo == null ? 1 : param.catNo}"/>
+                        <input type="search" name="keyword" th:value="${param.keyword == null ? '' : param.keyword}" title="검색어를 입력해 주세요." placeholder="검색어를 입력해 주세요." class="input-text"
+                               autocomplete="off">
+                        <button type="button" class="btn-search-input">검색</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <div id="event-list-wrap">
             <div class="inner-wrap">

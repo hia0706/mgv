@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/default}">
 <head th:fragment="extra-head-content">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script th:src="@{/js/event/home.js}"></script>
+    <script th:src="@{/js/event/home.js}"></script>
     <title>이벤트</title>
 </head>
 <div layout:fragment="content">
@@ -14,313 +14,28 @@
         </div>
     </div>
     <div id="contents">
-    <div class="inner-wrap">
-	    <h2 class="tit">이벤트</h2>
-	    <form method="get" id="actionForm" th:action="@{list}">
-	    <div class="tab-list fixed">
-	        <ul>
-	            <li data-cat-no="1" th:classappend="${param.catNo == null || #strings.equals(param.catNo, '1') ? 'on' : ''}">
-	                <a th:href="@{/event}" title="전체">전체</a>
-	            </li>
-	            <li data-cat-no="2" th:classappend="${#strings.equals(param.catNo, '2') ? 'on' : ''}">
-	                <a th:href="@{/event/list(catNo=2)}" title="MGV Pick 탭으로 이동">MGV Pick</a>
-	            </li>
-	            <li data-cat-no="3" th:classappend="${#strings.equals(param.catNo, '3') ? 'on' : ''}">
-	                <a th:href="@{/event/list(catNo=3)}" title="영화 탭으로 이동">영화</a>
-	            </li>
-	            <li data-cat-no="4" th:classappend="${#strings.equals(param.catNo, '4') ? 'on' : ''}">
-	                <a th:href="@{/event/list(catNo=4)}" title="극장 탭으로 이동">극장</a>
-	            </li>
-	        </ul>
-	    </div>
-	    </form>
-	</div>
-        <!--
-        <div id="divTopArea" class="event-slider">
-            <div class="inner-wrap">
-                <p class="name">추천 이벤트</p>
-                <div class="event-pagination swiper-pagination-bullets">
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet"></span>
-                    <span class="swiper-pagination-bullet"></span>
+        <div class="inner-wrap">
+            <h2 class="tit">이벤트</h2>
+            <form method="get" id="actionForm" th:action="@{list}">
+                <div class="tab-list fixed">
+                    <ul>
+                        <li data-cat-no="1" th:classappend="${param.catNo == null || #strings.equals(param.catNo, '1') ? 'on' : ''}">
+                            <a th:href="@{/event}" title="전체">전체</a>
+                        </li>
+                        <li data-cat-no="2" th:classappend="${#strings.equals(param.catNo, '2') ? 'on' : ''}">
+                            <a th:href="@{/event/list(catNo=2)}" title="MGV Pick 탭으로 이동">MGV Pick</a>
+                        </li>
+                        <li data-cat-no="3" th:classappend="${#strings.equals(param.catNo, '3') ? 'on' : ''}">
+                            <a th:href="@{/event/list(catNo=3)}" title="영화 탭으로 이동">영화</a>
+                        </li>
+                        <li data-cat-no="4" th:classappend="${#strings.equals(param.catNo, '4') ? 'on' : ''}">
+                            <a th:href="@{/event/list(catNo=4)}" title="극장 탭으로 이동">극장</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="event-count">
-                    <span title="현재 페이지" class="active">2</span> / <span title="전체 페이지" class="total">17</span>
-                </div>
-                <div class="event-util">
-                    <button type="button" class="event-prev" tabindex="0" role="button" aria-label="Previous slide">이전 이벤트 보기 </button>
-                    <button type="button" class="event-next" tabindex="0" role="button" aria-label="Next slide">다음 이벤트 보기 </button>
-                    <button type="button" class="pause on">일시정지</button>
-                    <button type="button" class="play">자동재생</button>
-                </div>
-                <div class="event-control">
-                    <button type="button" class="event-prev" tabindex="0" role="button" aria-label="Previous slide">이전 이벤트 보기 </button>
-                    <button type="button" class="event-next" tabindex="0" role="button" aria-label="Next slide">다음 이벤트 보기 </button>
-                </div>
-            </div>
-            <div class="event-swiper swiper-container-initialized swiper-container-horizontal">
-                <div class="swiper-wrapper" style="transform: translate3d(-1710px, 0px, 0px); transition-duration: 0ms;">
-                    <div class="cell swiper-slide swiper-slide-duplicate" data-swiper-slide-index="15" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="11739" data-netfunnel="N" class="eventBtn" title="[광주은행X메가박스] 메가박스 카드 앵콜 이벤트 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/03/13/kbh0MY2SjLn5mOQ6D2qZ5HgjrChtUgO9.jpg" alt="[광주은행X메가박스] 메가박스 카드 앵콜 이벤트" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">[광주은행X메가박스] 메가박스 카드 앵콜 이벤트</p>
-                                <p class="date">2023.03.15 ~ 2023.08.31</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide swiper-slide-duplicate" data-swiper-slide-index="16" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="9187" data-netfunnel="N" class="eventBtn" title="U+멤버십 고객 영화 2,000원 할인 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2021/01/28/poxTnLz5oVfwTJlW6TINBrEKv3jP2GIJ.jpg" alt="U+멤버십 고객 영화 2,000원 할인" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">U+멤버십 고객 영화 2,000원 할인</p>
-                                <p class="date">2021.02.01 ~ 2023.12.31</p>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <div class="cell swiper-slide swiper-slide-prev" data-swiper-slide-index="0" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="13656" data-netfunnel="N" class="eventBtn" title="[클래식 라이브] 2023 썸머 클래식 페스티벌 중계  상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/07/12/9bDISJTbEuOp54sFpc7SDkjKxnz08p4V.jpg" alt="[클래식 라이브] 2023 썸머 클래식 페스티벌 중계 " onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">[클래식 라이브] 2023 썸머 클래식 페스티벌 중계 </p>
-                                <p class="date">2023.07.30 ~ 2023.08.27</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide swiper-slide-active" data-swiper-slide-index="1" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="13721" data-netfunnel="N" class="eventBtn" title="[메가박스X컬리] 컬리 할인쿠폰 받아가자! 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/07/21/9ZsP4Edl6rdSh32kDrRcOshf5TO548hF.jpg" alt="[메가박스X컬리] 컬리 할인쿠폰 받아가자!" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">[메가박스X컬리] 컬리 할인쿠폰 받아가자!</p>
-                                <p class="date">2023.07.24 ~ 2023.08.06</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide swiper-slide-next" data-swiper-slide-index="2" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="13700" data-netfunnel="N" class="eventBtn" title="떠나자 영화 바캉스! 릴레이 개봉 러쉬🌊 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/07/18/xuPpA1inYxDPeUdN0mnRCzQHuL0JrHHD.jpg" alt="떠나자 영화 바캉스! 릴레이 개봉 러쉬🌊" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">떠나자 영화 바캉스! 릴레이 개봉 러쉬🌊</p>
-                                <p class="date">2023.07.19 ~ 2023.08.31</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide" data-swiper-slide-index="3" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="13680" data-netfunnel="N" class="eventBtn" title="[메가박스XKT멤버십] 한여름 달.달.혜택! 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/07/17/a9GfFJ5VA97IyxHLadEU9zHLkRvTSPJZ.jpg" alt="[메가박스XKT멤버십] 한여름 달.달.혜택!" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">[메가박스XKT멤버십] 한여름 달.달.혜택!</p>
-                                <p class="date">2023.07.17 ~ 2023.07.31</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide" data-swiper-slide-index="4" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="13645" data-netfunnel="N" class="eventBtn" title="코카-콜라 마시고 슈퍼팝 가자! 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/07/10/IRopOeaOhHnHjOwEXIn1BZk4MkZQgmg6.jpg" alt="코카-콜라 마시고 슈퍼팝 가자!" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">코카-콜라 마시고 슈퍼팝 가자!</p>
-                                <p class="date">2023.07.12 ~ 2023.08.15</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide" data-swiper-slide-index="5" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="13601" data-netfunnel="N" class="eventBtn" title="강원지역 삼성카드 영화할인 프로모션 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/07/03/OZg00VZtug6tsp4MmsJgrpdHG644M100.jpg" alt="강원지역 삼성카드 영화할인 프로모션" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">강원지역 삼성카드 영화할인 프로모션</p>
-                                <p class="date">2023.07.03 ~ 2023.07.31</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide" data-swiper-slide-index="6" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="13581" data-netfunnel="N" class="eventBtn" title="[밀크x메가박스] LUCKY POINT 7 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/06/28/62WE2TL3958rGO5a58gsDqQuytkH9RKm.jpg" alt="[밀크x메가박스] LUCKY POINT 7" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">[밀크x메가박스] LUCKY POINT 7</p>
-                                <p class="date">2023.07.03 ~ 2023.07.31</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide" data-swiper-slide-index="7" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="12761" data-netfunnel="N" class="eventBtn" title="[메가박스X더쎈카드] 할인카드 조회하고 혜택받자! 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/03/14/tGlm2fXaKlYTeX55sC3h4VFQUwHPXdXV.jpg" alt="[메가박스X더쎈카드] 할인카드 조회하고 혜택받자!" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">[메가박스X더쎈카드] 할인카드 조회하고 혜택받자!</p>
-                                <p class="date">2023.03.10 ~ 2023.12.31</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide" data-swiper-slide-index="8" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="12642" data-netfunnel="N" class="eventBtn" title="메가박스 VIP 혜택 안내 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/02/07/ZbBRWoViHfa6Oc40yCwEs1lB4VmW4Lhi.jpg" alt="메가박스 VIP 혜택 안내" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">메가박스 VIP 혜택 안내</p>
-                                <p class="date">2023.03.02 ~ 2024.02.29</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide" data-swiper-slide-index="9" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="11263" data-netfunnel="N" class="eventBtn" title="내 차 보험료 확인하고 영화 1만원 할인쿠폰 받으세요! 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/05/12/nWyHhXImDc6vKH1YZgiNhhlfDI5Zvq0O.jpg" alt="내 차 보험료 확인하고 영화 1만원 할인쿠폰 받으세요!" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">내 차 보험료 확인하고 영화 1만원 할인쿠폰 받으세요!</p>
-                                <p class="date">2022.04.18 ~ 2023.12.31</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide" data-swiper-slide-index="10" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="13633" data-netfunnel="N" class="eventBtn" title="[ktM모바일X메가박스] 알뜰폰 제휴요금제 출시 안내 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/07/06/FxG3rrK1qAbig01AxmJP7jvGvtB850Ii.jpg" alt="[ktM모바일X메가박스] 알뜰폰 제휴요금제 출시 안내" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">[ktM모바일X메가박스] 알뜰폰 제휴요금제 출시 안내</p>
-                                <p class="date">2023.07.06 ~ 2023.12.31</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide" data-swiper-slide-index="11" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="13558" data-netfunnel="N" class="eventBtn" title="[메가박스X노벨피아] 퀴즈 풀고 상품 받자! 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/06/27/zEHeH7KNXdRNLxIJuS3Fca0BlL1SYXlG.png" alt="[메가박스X노벨피아] 퀴즈 풀고 상품 받자!" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">[메가박스X노벨피아] 퀴즈 풀고 상품 받자!</p>
-                                <p class="date">2023.06.26 ~ 2023.08.15</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide" data-swiper-slide-index="12" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="13381" data-netfunnel="N" class="eventBtn" title="[DB손해보험] 내 차 보험료 확인하고 영화 할인쿠폰 받기 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/05/30/iQfG1SrlkF1g81hZDEkWvO00AMzknYsM.jpg" alt="[DB손해보험] 내 차 보험료 확인하고 영화 할인쿠폰 받기" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">[DB손해보험] 내 차 보험료 확인하고 영화 할인쿠폰 받기</p>
-                                <p class="date">2023.05.30 ~ 2023.07.31</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide" data-swiper-slide-index="13" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="8865" data-netfunnel="N" class="eventBtn" title="[메가박스X현대카드] 상시 6,000M 포인트 사용 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/05/02/liflSYt4BQt4RYxrBuLVXG3Tk3Wq2CdA.jpg" alt="[메가박스X현대카드] 상시 6,000M 포인트 사용" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">[메가박스X현대카드] 상시 6,000M 포인트 사용</p>
-                                <p class="date">2023.05.02 ~ 2023.12.31</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide" data-swiper-slide-index="14" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="13065" data-netfunnel="N" class="eventBtn" title="[토스페이] 생애 첫 결제 시 최대 3천원 즉시할인 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/04/21/0P08kANUShhVA5bR2LGYeQ4OZYn6Iakj.jpg" alt="[토스페이] 생애 첫 결제 시 최대 3천원 즉시할인" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">[토스페이] 생애 첫 결제 시 최대 3천원 즉시할인</p>
-                                <p class="date">2023.04.24 ~ 2024.04.30</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide" data-swiper-slide-index="15" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="11739" data-netfunnel="N" class="eventBtn" title="[광주은행X메가박스] 메가박스 카드 앵콜 이벤트 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/03/13/kbh0MY2SjLn5mOQ6D2qZ5HgjrChtUgO9.jpg" alt="[광주은행X메가박스] 메가박스 카드 앵콜 이벤트" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">[광주은행X메가박스] 메가박스 카드 앵콜 이벤트</p>
-                                <p class="date">2023.03.15 ~ 2023.08.31</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide" data-swiper-slide-index="16" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="9187" data-netfunnel="N" class="eventBtn" title="U+멤버십 고객 영화 2,000원 할인 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2021/01/28/poxTnLz5oVfwTJlW6TINBrEKv3jP2GIJ.jpg" alt="U+멤버십 고객 영화 2,000원 할인" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">U+멤버십 고객 영화 2,000원 할인</p>
-                                <p class="date">2021.02.01 ~ 2023.12.31</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide swiper-slide-duplicate swiper-slide-duplicate-prev" data-swiper-slide-index="0" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="13656" data-netfunnel="N" class="eventBtn" title="[클래식 라이브] 2023 썸머 클래식 페스티벌 중계  상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/07/12/9bDISJTbEuOp54sFpc7SDkjKxnz08p4V.jpg" alt="[클래식 라이브] 2023 썸머 클래식 페스티벌 중계 " onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">[클래식 라이브] 2023 썸머 클래식 페스티벌 중계 </p>
-                                <p class="date">2023.07.30 ~ 2023.08.27</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="1" style="width: 530px; margin-right: 40px;">
-                        <a th:href="@{/event/detail/1}" data-no="13721" data-netfunnel="N" class="eventBtn" title="[메가박스X컬리] 컬리 할인쿠폰 받아가자! 상세보기">
-                            <p class="img">
-                                <img src="https://img.megabox.co.kr/SharedImg/event/2023/07/21/9ZsP4Edl6rdSh32kDrRcOshf5TO548hF.jpg" alt="[메가박스X컬리] 컬리 할인쿠폰 받아가자!" onerror="noImg(this);">
-                            </p>
-                            <div class="cont">
-                                <p class="tit">[메가박스X컬리] 컬리 할인쿠폰 받아가자!</p>
-                                <p class="date">2023.07.24 ~ 2023.08.06</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-            </div>
+            </form>
         </div>
-        <div id="boardSearch" class="inner-wrap" style="display:none">
-            <div class="board-list-util mt40">
-                <p class="result-count"></p>
-                <div class="board-search">
-                    <input type="text" title="검색어를 입력해 주세요." placeholder="검색어를 입력해 주세요." class="input-text">
-                    <button type="button" class="btn-search-input">검색</button>
-                </div>
-            </div>
-        </div>
-        -->
-        
+
         <div id="event-list-wrap">
             <div class="inner-wrap">
                 <div class="tit-util mt70">
@@ -332,7 +47,7 @@
                 </div>
                 <div class="event-list mt15">
                     <ul>
-                        <li th:each="event, iterStat : ${mgvResult.eventList}"  >
+                        <li th:each="event, iterStat : ${mgvResult.eventList}">
                             <a th:href="@{/event/detail(no=${event.no},page=${param.page}, status=${param.status}, catNo=${param.catNo}, keyword=${param.keyword})}" class="eventBtn">
                                 <p class="img">
                                     <img th:src="@{|/common/image/${event.mainImageFile.fileId}|}">
@@ -372,7 +87,7 @@
                 </div>
                 <div class="event-list mt15">
                     <ul>
-                        <li th:each="event, iterStat: ${movieResult.eventList}" >
+                        <li th:each="event, iterStat: ${movieResult.eventList}">
                             <a th:href="@{/event/detail(no=${event.no},page=${param.page}, status=${param.status}, catNo=${param.catNo}, keyword=${param.keyword})}" class="eventBtn">
                                 <p class="img">
                                     <img th:src="@{|/common/image/${event.mainImageFile.fileId}|}">
@@ -383,7 +98,7 @@
                         </li>
                     </ul>
                 </div>
-                
+
             </div>
         </div>
     </div>
