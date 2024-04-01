@@ -18,7 +18,7 @@
   "module": "dist/simplebar.esm.js",
   "types": "dist/simplebar.d.ts",
   "style": "dist/simplebar.min.css",
-  "homepage": "https://grsmto.github.io/simplebar/",
+  "homepage": "https://hia0706.github.io/MGV-Project.git",
   "bugs": "https://github.com/grsmto/simplebar/issues",
   "license": "MIT",
   "scripts": {
@@ -29,6 +29,8 @@
     "test:unit": "jest -c jest-unit.config.js",
     "test:e2e": "env-cmd intern",
     "version": "yarn build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "precommit": "lint-staged"
   },
   "dependencies": {
