@@ -12,8 +12,6 @@ spring:
     multipart:
       max-file-size: 10485760
       max-request-size: 104857600
-          
-        
 
 ## email setting
   mail:
@@ -60,6 +58,7 @@ spring:
 upload:
   directory: /images/product/
 
+## api
 movie:
   kobis:
     url: www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json
@@ -67,9 +66,7 @@ movie:
   kmdb:
     url: api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp
     key: Y40OV2CFS1I2MTV081VG
-
-  
   
 # event, support img save root
-default-file-path: C:\\workspace\\MGV\\images
+default-file-path: D:\\workspace\\MGV\\images
 #default-file-path: C:\\Users\\sqptm\\source\\spring-mgv\\images

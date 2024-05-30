@@ -25,8 +25,7 @@
 
                 </div> -->
                 <div class="mbimg">
-                    <img th:src="${user.profileImg != null ? '/common/image/' + user.profileImg : '/images/user/default.png'}"
-                         data-default-src="/images/user/default.png">
+                    <img th:src="${user.profileImg != null ? '/common/image/' + user.profileImg : '/images/user/default.png'}" data-default-src="/images/user/default.png">
                 </div>
 
                 <div class="mb_name">안녕하세요!<p><span th:text="${user.name}"></span>님</p></div>
