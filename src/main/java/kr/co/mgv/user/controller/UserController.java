@@ -192,10 +192,13 @@ public class UserController {
         String userId = getLoggedInUserId();
         log.info("loginId -> {}", userId);
 
-        HashMap<String, Object> orders = mypageService.getOrders(userId, startDate, endDate, state, page);
+        String endDateWithTime = endDate + " 23:59:59";
+        log.info("Converted endDate -> {}", endDateWithTime);
+
+        HashMap<String, Object> orders = mypageService.getOrders(userId, startDate, endDateWithTime, state, page);
         log.info("page -> {}", page);
         log.info("startDate -> {}", startDate);
-        log.info("endDate -> {}", endDate);
+        log.info("endDate -> {}", endDateWithTime);
         log.info("state -> {}", state);
         return ResponseEntity.ok(orders);
     }

@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -44,6 +46,23 @@ public class UserFindController {
     @GetMapping("/pwd-form")
     public String pwdfindForm() {
         return "view/user/find/pwdform";
+    }
+
+    // 이메일 인증
+    @PostMapping("/mail")
+    @ResponseBody
+    public ResponseEntity<String> mailConfirm(@RequestParam("email") String email, HttpSession session) {
+        try {
+            String code = emailService.sendSimpleMessage(email);
+            log.info("인증번호 -> {}", code);
+
+            // 생성한 인증 코드를 세션에 저장
+            session.setAttribute("emailConfirmCode", String.valueOf(code));
+            return ResponseEntity.ok().body("success");
+        } catch (Exception e) {
+            log.error("Error sending email", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("메일 전송 중 오류가 발생했습니다.");
+        }
     }
 
     @PostMapping("/check")
