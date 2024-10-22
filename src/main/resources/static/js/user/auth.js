@@ -81,7 +81,7 @@ $(() => {
         try {
             const response = await $.ajax({
                 type: "POST",
-                url: "/user/auth/mail",
+                url: "/mypage/user-mail",
                 data: {"email": inputEmail}
             });
             if (response === "success") {
