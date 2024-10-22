@@ -30,7 +30,6 @@ target/
 ### VS Code ###
 .vscode/
 
-*.md
 /images/*
 !/images/user/default.png
 !/images/no-image.jpg
